@@ -8,13 +8,14 @@ $config = [
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'aliases' => [
-        '@npm' => '@vendor/npm-asset',
+        '@bower' => '@vendor/npm-asset', // Перенаправляем bower на npm-asset
+        '@npm'   => '@vendor/npm-asset',
     ],
     'components' => [
         'assetManager' => [
             'bundles' => [
                 'yii\web\JqueryAsset' => [
-                    'sourcePath' => null,
+                    'sourcePath' => null, // Не использовать локальный файл
                     'js' => [
                         'https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js'
                     ]
@@ -29,6 +30,11 @@ $config = [
                     'sourcePath' => null,
                     'js' => [
                         'https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js'
+                    ]
+                ],
+                'yii\gii\GiiAsset' => [
+                    'depends' => [
+                        'yii\web\JqueryAsset' // Используем уже настроенный JqueryAsset
                     ]
                 ]
             ],
