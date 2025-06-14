@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use app\models\Track;
 
 /** @var yii\web\View $this */
 /** @var app\models\TrackSearch $model */
@@ -20,7 +21,13 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'track_number') ?>
 
-    <?= $form->field($model, 'status') ?>
+    <?= $form->field($model, 'status')->dropDownList(
+        Track::getStatusLabels(),
+        [
+            'prompt' => 'Выберите статус...',
+            'class' => 'form-control'
+        ]
+    ) ?>
 
     <div class="form-group">
         <?= Html::submitButton('Поиск', ['class' => 'btn btn-primary']) ?>

@@ -104,4 +104,26 @@ class Track extends \yii\db\ActiveRecord
         return $labels[$this->status] ?? $this->status;
     }
 
+    public function fields()
+    {
+        return [
+            'id',
+            'track_number',
+            'status' => function() {
+                return $this->getStatusLabel();
+            },
+            'created_at' => function() {
+                return date('Y-m-d H:i:s', $this->created_at);
+            },
+            'updated_at' => function() {
+                return date('Y-m-d H:i:s', $this->updated_at);
+            },
+        ];
+    }
+
+    public function extraFields()
+    {
+        return ['statusLabel'];
+    }
+
 }

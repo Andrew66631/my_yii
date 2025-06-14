@@ -2,15 +2,11 @@
 
 namespace app\models;
 
-
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 
 class TrackSearch extends Track
 {
-    /**
-     * {@inheritdoc}
-     */
     public function rules()
     {
         return [
@@ -19,24 +15,20 @@ class TrackSearch extends Track
         ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function scenarios()
-    {
-        return Model::scenarios();
-    }
-
-    /**
-     * @param $params
-     * @return ActiveDataProvider
-     */
     public function search($params)
     {
         $query = Track::find();
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'pagination' => [
+                'pageSize' => 20,
+            ],
+            'sort' => [
+                'defaultOrder' => [
+                    'created_at' => SORT_DESC,
+                ]
+            ]
         ]);
 
         $this->load($params);

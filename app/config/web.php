@@ -82,6 +82,12 @@ $config = [
             'hostInfo' => 'http://127.0.0.1:8080',
             'baseUrl' => '',
         ],
+        'jwt' => [
+            'class' => \sizeg\jwt\Jwt::class,
+            'signer' => \sizeg\jwt\JwtSigner::HS256, // Константа (int)
+            'signerKeyContents' => 'KXp4dDZqZjN1MHI5aGJvY2twZ3Vyc2h0bWl6',
+            'signerKeyPassphrase' => '',
+        ],
     ],
     'container' => [
         'singletons' => [

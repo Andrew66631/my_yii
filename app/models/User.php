@@ -80,7 +80,7 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public static function findIdentityByAccessToken($token, $type = null)
     {
-        return null; // если не используете токены
+        return null;
     }
 
     /**
@@ -154,7 +154,6 @@ class User extends ActiveRecord implements IdentityInterface
     {
         if (parent::beforeSave($insert)) {
             if ($insert) {
-                // Генерируем auth_key при создании нового пользователя
                 $this->auth_key = Yii::$app->security->generateRandomString();
             }
             return true;
