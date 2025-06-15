@@ -39,6 +39,7 @@ class TrackController extends ActiveController
         $behaviors['authenticator'] = [
             'class' => JwtHttpBearerAuth::class,
             'optional' => [
+                'create',
                 'index',
                 'view',
                 'options'
