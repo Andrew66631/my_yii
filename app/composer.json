@@ -1,4 +1,6 @@
 {
+  "minimum-stability": "beta",
+  "prefer-stable": true,
   "repositories": [
     {
       "type": "composer",
@@ -8,8 +10,9 @@
   "require": {
     "yiisoft/yii2": "~2.0.45",
     "yiisoft/yii2-bootstrap5": "~2.0.3",
-    "yiisoft/yii2-symfonymailer": "~2.0.3",
-    "npm-asset/jquery": "^3.6.0"
+    "npm-asset/jquery": "^3.6.0",
+    "lcobucci/jwt": "^4.0",
+    "sizeg/yii2-jwt": "^4.0"
   },
   "require-dev": {
     "yiisoft/yii2-debug": "~2.1.0",

@@ -8,14 +8,14 @@ $config = [
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'aliases' => [
-        '@bower' => '@vendor/npm-asset', // Перенаправляем bower на npm-asset
+        '@bower' => '@vendor/npm-asset',
         '@npm'   => '@vendor/npm-asset',
     ],
     'components' => [
         'assetManager' => [
             'bundles' => [
                 'yii\web\JqueryAsset' => [
-                    'sourcePath' => null, // Не использовать локальный файл
+                    'sourcePath' => null,
                     'js' => [
                         'https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js'
                     ]
@@ -34,7 +34,7 @@ $config = [
                 ],
                 'yii\gii\GiiAsset' => [
                     'depends' => [
-                        'yii\web\JqueryAsset' // Используем уже настроенный JqueryAsset
+                        'yii\web\JqueryAsset'
                     ]
                 ]
             ],
@@ -42,6 +42,8 @@ $config = [
         'request' => [
             'cookieValidationKey' => '16GGjJSDFuCPGWRRpFsEG9hNpY8wBrrd',
             'enableCsrfValidation' => true,
+            'baseUrl' => '',
+            'hostInfo' => 'http://127.0.0.1:8080',
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
@@ -77,6 +79,28 @@ $config = [
             'showScriptName' => false,
             'enableStrictParsing' => false,
             'rules' => require __DIR__ . '/routes.php',
+            'hostInfo' => 'http://127.0.0.1:8080',
+            'baseUrl' => '',
+        ],
+        'jwt' => [
+            'class' => \sizeg\jwt\Jwt::class,
+            'signer' => \sizeg\jwt\JwtSigner::HS256, // Константа (int)
+            'signerKeyContents' => 'KXp4dDZqZjN1MHI5aGJvY2twZ3Vyc2h0bWl6',
+            'signerKeyPassphrase' => '',
+        ],
+    ],
+    'container' => [
+        'singletons' => [
+            'app\services\TrackValidatorInterface' => [
+                'class' => 'app\services\TrackValidator',
+            ],
+            'app\services\StatusValidatorInterface' => [
+                'class' => 'app\services\StatusValidator',
+            ],
+
+        ],
+        'definitions' => [
+            // Можно добавить другие зависимости, если нужно
         ],
     ],
     'params' => $params,

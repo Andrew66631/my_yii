@@ -11,6 +11,8 @@ $this->title = 'Главная';
     <h1>Добро пожаловать!</h1>
 
     <p>Выберите действие:</p>
-
+    <div class="btn-group" role="group" aria-label="Навигация">
+        <?= Html::a('Посылки', ['track/'], ['class' => 'btn btn-primary']) ?>
+    </div>
 
 </div>

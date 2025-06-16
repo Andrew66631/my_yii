@@ -71,15 +71,12 @@ class SiteController extends Controller
         $model = new User();
 
         if ($model->load(Yii::$app->request->post())) {
-            // Используем UserFactory для создания пользователя
             $user = UserFactory::createUser ($model->username, $model->email, $model->password_hash);
 
             if ($user->validate() && $user->save()) {
-                // Успешная регистрация
                 Yii::$app->session->setFlash('success', 'Регистрация прошла успешно.');
                 return $this->redirect(['site/index']);
             } else {
-                // Ошибка валидации
                 Yii::$app->session->setFlash('error', 'Ошибка регистрации.');
             }
         }
